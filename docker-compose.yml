@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  redis:
+   image: redis:latest
+  webapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - nginx-vol:/usr/share/nginx/html
+    networks:
+     - my_net
+    links: 
+     - redis
+volumes:
+  nginx-vol:
+networks:
+  my_net:
+
